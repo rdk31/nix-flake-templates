@@ -12,6 +12,10 @@
       url = "github:kolloch/crate2nix";
       flake = false;
     };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, utils, rust-overlay, crate2nix, ... }:
