@@ -13,6 +13,6 @@ Intializing a rust project:
 
 ```
 mkdir my-project && cd my-project
-nix flake init -t "github:rdk31/nix-flake-templates#rust"
+nix flake init -t "github:rdk31/nix-flake-templates/master#rust"
 git init && git add .
 ```
