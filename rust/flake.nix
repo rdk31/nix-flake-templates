@@ -10,6 +10,9 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     crate2nix = {
       url = "github:kolloch/crate2nix";
+      # if you use git dependencies with branches in Cargo.toml, use this fork
+      # https://github.com/kolloch/crate2nix/issues/205
+      #url = "github:yusdacra/crate2nix/feat/builtinfetchgit";
       flake = false;
     };
     flake-compat = {
