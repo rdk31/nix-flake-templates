@@ -3,6 +3,7 @@
 
 {
   description = "My awesome Rust project";
+  nixConfig.bash-prompt = "\[rust\]$ ";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -97,8 +98,8 @@
             };
         }
       ) // {
-        overlay = final: prev: {
-          ${name} = self.defaultPackage.${prev.system};
-        };
+      overlay = final: prev: {
+        ${name} = self.defaultPackage.${prev.system};
       };
+    };
 }
