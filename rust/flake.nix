@@ -1,6 +1,4 @@
-# This file is pretty general, and you can adapt it in your project replacing
-# only `name` and `description` below.
-
+# Inspired by https://github.com/srid/rust-nix-template
 {
   description = "My awesome Rust project";
   nixConfig.bash-prompt = "\[rust\]$ ";
