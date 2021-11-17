@@ -1,7 +1,0 @@
-{
-  "recommendations": [
-    "arrterian.nix-env-selector",
-    "ms-python.python",
-    "ms-python.vscode-pylance"
-  ]
-}

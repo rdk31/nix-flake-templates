@@ -1,4 +1,0 @@
-{
-  "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix",
-  "python.languageServer": "Pylance"
-}
