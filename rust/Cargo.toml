@@ -2,7 +2,7 @@
 # If you change the name here, you must also do it in flake.nix
 name = "CHANGE-ME"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
