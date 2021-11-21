@@ -5,17 +5,17 @@
     templates = {
       rust = {
         path = ./rust;
-        description = "A rust development flake";
+        description = "Rust development flake";
       };
 
-      python-simple = {
-        path = ./python/simple;
-        description = "A simple python devShell flake";
+      python-shell = {
+        path = ./python/shell;
+        description = "Python devShell flake";
       };
 
       python-jupyter = {
         path = ./python/jupyter;
-        description = "A python jupyter devShell flake";
+        description = "Python jupyter flake";
       };
     };
   };

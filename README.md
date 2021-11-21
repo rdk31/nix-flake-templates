@@ -5,7 +5,7 @@ A collection of flake templates for easy project development and packaging.
 ## Supported environments
 
 - Rust
-- Python (simple - only devShell)
+- Python devShell
 - Python jupyter
 
 ## Example usage
