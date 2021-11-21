@@ -19,7 +19,9 @@
           jupyter = jupyterWith.lib.${system};
           iPython = jupyter.kernels.iPythonWith {
             name = "python";
-            packages = p: with p; [ numpy ];
+            packages = p: with p; [
+              # numpy
+            ];
           };
 
           jupyterEnvironment = jupyter.jupyterlabWith {
