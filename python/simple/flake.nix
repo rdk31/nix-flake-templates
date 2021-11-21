@@ -4,7 +4,6 @@
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
-
   inputs.flake-compat = {
     url = "github:edolstra/flake-compat";
     flake = false;
@@ -21,7 +20,7 @@
           python = pkgs.${pythonVersion};
           pythonPackages = pkgs.${pythonVersion + "Packages"};
 
-          pythonEnv = python.withPackages (ps: with ps; [
+          pythonEnv = python.withPackages (p: with p; [
             # python dependencies
           ]);
         in
