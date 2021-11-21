@@ -8,21 +8,25 @@
     url = "github:edolstra/flake-compat";
     flake = false;
   };
+  inputs.mach-nix.url = "github:davhau/mach-nix";
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  outputs = { self, nixpkgs, flake-utils, mach-nix, ... }:
     let
-      pythonVersion = "python39";
+      pythonVersion = "python3";
     in
     flake-utils.lib.eachDefaultSystem
       (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          python = pkgs.${pythonVersion};
-          pythonPackages = pkgs.${pythonVersion + "Packages"};
+          mach-nix-utils = import mach-nix
+            {
+              inherit pkgs;
+              python = pythonVersion;
+            };
 
-          pythonEnv = python.withPackages (p: with p; [
-            # python dependencies
-          ]);
+          pythonEnv = mach-nix-utils.mkPython {
+            requirements = builtins.readFile ./requirements.txt;
+          };
         in
         {
           devShell = pkgs.mkShell {
