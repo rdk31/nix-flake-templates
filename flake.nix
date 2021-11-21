@@ -12,6 +12,11 @@
         path = ./python/simple;
         description = "A simple python devShell flake";
       };
+
+      python-jupyter = {
+        path = ./python/jupyter;
+        description = "A python jupyter devShell flake";
+      };
     };
   };
 }

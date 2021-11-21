@@ -6,6 +6,7 @@ A collection of flake templates for easy project development and packaging.
 
 - Rust
 - Python (simple - only devShell)
+- Python jupyter
 
 ## Example usage
 
