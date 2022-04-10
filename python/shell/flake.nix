@@ -12,19 +12,16 @@
 
   outputs = { self, nixpkgs, flake-utils, mach-nix, ... }:
     let
-      pythonVersion = "python3";
+      pythonVersion = "python39";
     in
     flake-utils.lib.eachDefaultSystem
       (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          mach-nix-utils = import mach-nix
-            {
-              inherit pkgs;
-              python = pythonVersion;
-            };
+          mach = mach-nix.lib.${system};
 
-          pythonEnv = mach-nix-utils.mkPython {
+          pythonEnv = mach.mkPython {
+            python = pythonVersion;
             requirements = builtins.readFile ./requirements.txt;
           };
         in
