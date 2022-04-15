@@ -31,3 +31,10 @@ git init && git add -A
 nix develop
 python main.py
 ```
+
+## Using flakes within a git repo without commiting flake.nix
+
+- `git add --intent-to-add {flake.nix,flake.lock}`
+- `git update-index --assume-unchanged {flake.nix,flake.lock}`
+
+[source](https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/)
