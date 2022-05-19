@@ -14,10 +14,6 @@
       #url = "github:yusdacra/crate2nix/feat/builtinfetchgit";
       flake = false;
     };
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, utils, rust-overlay, crate2nix, ... }:

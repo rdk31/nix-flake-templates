@@ -4,10 +4,6 @@
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.flake-compat = {
-    url = "github:edolstra/flake-compat";
-    flake = false;
-  };
   inputs.mach-nix.url = "github:davhau/mach-nix";
 
   outputs = { self, nixpkgs, flake-utils, mach-nix, ... }:
