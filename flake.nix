@@ -10,7 +10,7 @@
 
       python-shell = {
         path = ./python/shell;
-        description = "Python devShell flake";
+        description = "Python shell flake";
       };
 
       python-jupyter = {
