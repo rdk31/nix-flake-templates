@@ -1,11 +1,9 @@
-# Inspired by https://github.com/srid/rust-nix-template
 {
-  description = "My awesome Rust project";
-  nixConfig.bash-prompt = "\[rust\]$ ";
+  description = "Rust flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils";
     rust-overlay.url = "github:oxalica/rust-overlay";
     crate2nix = {
       url = "github:kolloch/crate2nix";
@@ -16,13 +14,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, utils, rust-overlay, crate2nix, ... }:
+  outputs = { self, nixpkgs, flake-utils, rust-overlay, crate2nix, ... }:
     let
       # If you change the name here, you must also do it in Cargo.toml
       name = "CHANGE-ME";
       rustChannel = "stable";
     in
-    utils.lib.eachDefaultSystem
+    flake-utils.lib.eachDefaultSystem
       (system:
         let
           # Imports
@@ -86,7 +84,6 @@
                 [
                   cargo-watch
                   pkgs.rust-bin.${rustChannel}.latest.rust-analysis
-                  pkgs.rust-bin.${rustChannel}.latest.rls
                 ]);
               RUST_SRC_PATH = "${pkgs.rust-bin.${rustChannel}.latest.rust-src}/lib/rustlib/src/rust/library";
             };

@@ -5,7 +5,7 @@
     templates = {
       rust = {
         path = ./rust;
-        description = "Rust development flake";
+        description = "Rust flake";
       };
 
       python-shell = {
@@ -20,7 +20,7 @@
 
       latex = {
         path = ./latex;
-        description = "LaTeX template flake";
+        description = "LaTeX flake";
       };
     };
   };
