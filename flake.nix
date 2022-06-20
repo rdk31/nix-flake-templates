@@ -17,6 +17,11 @@
         path = ./python/jupyter;
         description = "Python jupyter flake";
       };
+
+      latex = {
+        path = ./latex;
+        description = "LaTeX template flake";
+      };
     };
   };
 }

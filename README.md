@@ -7,6 +7,7 @@ A collection of flake templates for easy project development and packaging.
 - Rust
 - Python shell
 - Python jupyter
+- LaTeX
 
 ## Example usage
 
