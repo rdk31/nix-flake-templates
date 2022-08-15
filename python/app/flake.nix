@@ -5,11 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     mach-nix.url = "github:davhau/mach-nix";
-    # inputs.pypi-deps-db = {
+    # pypi-deps-db = {
     #   url = "github:davhau/pypi-deps-db/0000000000000000000000000000000000000000";
     #   flake = false;
     # };
-    # inputs.mach-nix.inputs.pypi-deps-db.follows = "pypi-deps-db";
+    # mach-nix.inputs.pypi-deps-db.follows = "pypi-deps-db";
 
     flake-utils.url = "github:numtide/flake-utils";
   };
@@ -49,11 +49,11 @@
         };
 
         devShells.default = pkgs.mkShellNoCC {
-          buildInputs = with pkgs; [
-            pythonAppEnv
-            black
-            pyright
-          ];
+          packages = [ pythonAppEnv ];
+
+          shellHook = ''
+            export PYTHONPATH="${pythonEnv}/bin/python"
+          '';
         };
       }
     );
