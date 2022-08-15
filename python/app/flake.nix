@@ -5,11 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     mach-nix.url = "github:davhau/mach-nix";
-    # pypi-deps-db = {
-    #   url = "github:davhau/pypi-deps-db/0000000000000000000000000000000000000000";
-    #   flake = false;
-    # };
-    # mach-nix.inputs.pypi-deps-db.follows = "pypi-deps-db";
 
     flake-utils.url = "github:numtide/flake-utils";
   };
