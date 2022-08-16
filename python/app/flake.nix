@@ -3,10 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
     mach-nix.url = "github:davhau/mach-nix";
-
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = { self, nixpkgs, mach-nix, flake-utils, ... }:
@@ -47,7 +46,7 @@
           packages = [ pythonAppEnv ];
 
           shellHook = ''
-            export PYTHONPATH="${pythonEnv}/bin/python"
+            export PYTHONPATH="${pythonAppEnv}/bin/python"
           '';
         };
       }
