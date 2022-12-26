@@ -16,9 +16,11 @@ Using rust template:
 ```
 nix flake new -t "github:rdk31/nix-flake-templates/master#rust" my-project
 git init && git add -A
-# change the name in flake.nix and Cargo.toml
+# change the name in Cargo.toml
 nix develop
 cargo run
+# or just
+nix run
 ```
 
 Using python-shell template:
@@ -36,4 +38,3 @@ python main.py
 - `git add --intent-to-add {flake.nix,flake.lock}`
 - `git update-index --assume-unchanged {flake.nix,flake.lock}`
 
-[source](https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/)
