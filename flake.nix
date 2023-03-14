@@ -18,11 +18,6 @@
         description = "Python shell flake";
       };
 
-      python-jupyter = {
-        path = ./python/jupyter;
-        description = "Python jupyter flake";
-      };
-
       latex = {
         path = ./latex;
         description = "LaTeX flake";
