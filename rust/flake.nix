@@ -1,28 +1,42 @@
 {
-  description = "Rust flake";
+  description = "Description for the project";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    devenv.url = "github:cachix/devenv";
+    nix2container.url = "github:nlewo/nix2container";
+    nix2container.inputs.nixpkgs.follows = "nixpkgs";
+    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
+
     crane.url = "github:ipetkov/crane";
     crane.inputs.nixpkgs.follows = "nixpkgs";
-    flake-utils.url = "github:numtide/flake-utils";
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, crane, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem
-      (system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-          };
-          inherit (pkgs) lib;
+  outputs = inputs@{ flake-parts, crane, fenix, ... }:
+    let
+      rustVersion = "complete"; # stable, complete, beta & more... see https://github.com/nix-community/fenix
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.devenv.flakeModule
+      ];
+      systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
-          craneLib = crane.lib.${system};
-          src = craneLib.cleanCargoSource ./.;
+      perSystem = { config, self', inputs', pkgs, system, ... }:
+        let
+          craneLib = crane.lib.${system}.overrideToolchain
+            fenix.packages.${system}.${rustVersion}.toolchain;
+
+          src = craneLib.cleanCargoSource (craneLib.path ./.);
 
           buildInputs = with pkgs; [
-            openssl
-            pkg-config
+            # openssl
+            # pkg-config
           ];
 
           cargoArtifacts = craneLib.buildDepsOnly {
@@ -34,6 +48,22 @@
           };
         in
         {
+          # Per-system attributes can be defined here. The self' and inputs'
+          # module parameters provide easy access to attributes of the same
+          # system.
+
+          devenv.shells.default = {
+            name = "my-project";
+
+            # https://devenv.sh/reference/options/
+            pacakges = buildInputs;
+            languages.rust = {
+              enable = true;
+              version = rustVersion;
+            };
+          };
+
+          packages.default = crate;
           checks = {
             inherit crate;
 
@@ -46,20 +76,12 @@
               inherit src;
             };
           };
+        };
 
-          packages.default = crate;
-
-          apps.default = flake-utils.lib.mkApp {
-            drv = crate;
-          };
-
-          devShells.default = pkgs.mkShell {
-            inputsFrom = builtins.attrValues self.checks;
-
-            nativeBuildInputs = with pkgs; [
-              cargo
-              rustc
-            ];
-          };
-        });
+      flake = {
+        # The usual flake attributes can be defined here, including system-
+        # agnostic ones like nixosModule and system-enumerating ones, although
+        # those are more easily expressed in perSystem.
+      };
+    };
 }

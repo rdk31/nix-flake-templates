@@ -1,4 +1,6 @@
+.devenv*
+devenv.local.nix
+.direnv
+result
+
 /target
-/result
-/result-lib
-/.direnv
