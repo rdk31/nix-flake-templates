@@ -56,10 +56,17 @@
             name = "my-project";
 
             # https://devenv.sh/reference/options/
-            pacakges = buildInputs;
+            packages = buildInputs;
+
             languages.rust = {
               enable = true;
               version = rustVersion;
+            };
+
+            pre-commit.hooks = {
+              nixpkgs-fmt.enable = true;
+              clippy.enable = true;
+              rustfmt.enable = true;
             };
           };
 
